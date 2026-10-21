@@ -8,7 +8,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 20) {
                     header
                     gradePicker
                     continueButton
@@ -18,14 +18,15 @@ struct HomeView: View {
                 }
                 .padding()
             }
+            .background(Color(.systemGroupedBackground).ignoresSafeArea())
             .navigationTitle("ХимЛаб")
-            .background(Color(.systemGroupedBackground))
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 
     private var header: some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Привет, юный химик!")
+            Text("Привет, юный химик! 👋")
                 .font(.title2).bold()
             Text("Очки: \(store.data.earnedPoints) · Уроков: \(store.data.completedArticles.count)")
                 .font(.subheadline)
@@ -36,8 +37,7 @@ struct HomeView: View {
 
     private var gradePicker: some View {
         HStack {
-            Text("Класс").font(.headline)
-            Spacer()
+            Image(systemName: "graduationcap.fill").foregroundStyle(.teal)
             Picker("Класс", selection: Binding(
                 get: { store.data.selectedGrade },
                 set: { store.setGrade($0) }
@@ -47,20 +47,26 @@ struct HomeView: View {
                 }
             }
             .pickerStyle(.segmented)
-            .frame(maxWidth: 260)
         }
+        .padding(10)
+        .background(Color(.secondarySystemGroupedBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
     private var continueButton: some View {
         NavigationLink {
             LearnView()
         } label: {
-            Label("Продолжить обучение", systemImage: "play.fill")
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.accentColor)
-                .foregroundStyle(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 14))
+            HStack {
+                Image(systemName: "play.fill")
+                Text("Продолжить обучение").bold()
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(LinearGradient(colors: [.teal, .blue], startPoint: .leading, endPoint: .trailing))
+            .foregroundStyle(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 14))
+            .shadow(color: .blue.opacity(0.3), radius: 5, x: 0, y: 3)
         }
     }
 
@@ -70,16 +76,22 @@ struct HomeView: View {
                 NavigationLink {
                     ArticleView(article: a)
                 } label: {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text("Задание дня").font(.caption).foregroundStyle(.secondary)
-                        Text(a.title).font(.headline)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Label("Задание дня", systemImage: "star.fill")
+                            .font(.caption).bold()
+                            .foregroundStyle(.orange)
+                        Text(a.title).font(.headline).foregroundStyle(.primary)
                         Text(a.summary).font(.subheadline).lineLimit(2)
                             .foregroundStyle(.secondary)
                     }
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(Color(.secondarySystemGroupedBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+                    )
                 }
                 .buttonStyle(.plain)
             }
@@ -91,12 +103,12 @@ struct HomeView: View {
             NavigationLink {
                 LearnView()
             } label: {
-                quickCard(title: "Справочник", icon: "book")
+                quickCard(title: "Справочник", icon: "book.closed.fill", color: .green)
             }
             NavigationLink {
                 PeriodicTableView()
             } label: {
-                quickCard(title: "Таблица", icon: "square.grid.3x3")
+                quickCard(title: "Таблица", icon: "square.grid.3x3.fill", color: .purple)
             }
         }
         .buttonStyle(.plain)
@@ -106,22 +118,29 @@ struct HomeView: View {
         Button {
             showAI = true
         } label: {
-            Label("Спросить ИИ", systemImage: "brain.head.profile")
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.purple.opacity(0.15))
-                .foregroundStyle(.purple)
-                .clipShape(RoundedRectangle(cornerRadius: 14))
+            HStack {
+                Image(systemName: "brain.head.profile")
+                Text("Спросить ИИ-помощника")
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.purple.opacity(0.15))
+            .foregroundStyle(.purple)
+            .clipShape(RoundedRectangle(cornerRadius: 14))
         }
     }
 
-    private func quickCard(title: String, icon: String) -> some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon).font(.title)
-            Text(title).font(.subheadline).bold()
+    private func quickCard(title: String, icon: String, color: Color) -> some View {
+        VStack(spacing: 10) {
+            Image(systemName: icon)
+                .font(.title2)
+                .foregroundStyle(color)
+            Text(title)
+                .font(.subheadline).bold()
+                .foregroundStyle(.primary)
         }
-        .frame(maxWidth: .infinity, minHeight: 90)
+        .frame(maxWidth: .infinity, minHeight: 100)
         .background(Color(.secondarySystemGroupedBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }
