@@ -1,0 +1,14 @@
+[
+  {"id":"f1","targetName":"Вода","availableTokens":["H","O","2"],"correctAnswer":"H2O","explanation":"H₂O — 2 атома водорода и 1 атом кислорода."},
+  {"id":"f2","targetName":"Углекислый газ","availableTokens":["C","O","2"],"correctAnswer":"CO2","explanation":"CO₂ — 1 C и 2 O."},
+  {"id":"f3","targetName":"Оксид алюминия","availableTokens":["Al","O","2","3"],"correctAnswer":"Al2O3","explanation":"Al₂O₃ — валентности III и II."},
+  {"id":"f4","targetName":"Поваренная соль","availableTokens":["Na","Cl"],"correctAnswer":"NaCl","explanation":"NaCl — 1:1."},
+  {"id":"f5","targetName":"Серная кислота","availableTokens":["H","S","O","2","4"],"correctAnswer":"H2SO4","explanation":"H₂SO₄."},
+  {"id":"f6","targetName":"Метан","availableTokens":["C","H","4"],"correctAnswer":"CH4","explanation":"CH₄ — метан."},
+  {"id":"f7","targetName":"Аммиак","availableTokens":["N","H","3"],"correctAnswer":"NH3","explanation":"NH₃."},
+  {"id":"f8","targetName":"Гидроксид натрия","availableTokens":["Na","O","H"],"correctAnswer":"NaOH","explanation":"NaOH."},
+  {"id":"f9","targetName":"Сульфат меди(II)","availableTokens":["Cu","S","O","4"],"correctAnswer":"CuSO4","explanation":"CuSO₄."},
+  {"id":"f10","targetName":"Оксид кальция","availableTokens":["Ca","O"],"correctAnswer":"CaO","explanation":"CaO."},
+  {"id":"f11","targetName":"Этанол","availableTokens":["C","H","O","2","5","6"],"correctAnswer":"C2H6O","explanation":"C₂H₆O — этанол."},
+  {"id":"f12","targetName":"Уксусная кислота","availableTokens":["C","H","O","2","3","4"],"correctAnswer":"CH3COOH","explanation":"CH₃COOH."}
+]

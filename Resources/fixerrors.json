@@ -1,0 +1,10 @@
+[
+  {"id":"e1","statement":"H₂ + O₂ → H₂O","options":["2H₂ + O₂ → 2H₂O","H₂ + O₂ → H₂O₂","H + O → HO"],"correctIndex":0,"explanation":"Нужны коэффициенты 2, 1, 2."},
+  {"id":"e2","statement":"Формула воды — HO","options":["H₂O","HO₂","H₂O₂"],"correctIndex":0,"explanation":"H₂O."},
+  {"id":"e3","statement":"Молярная масса воды 20 г/моль","options":["18 г/моль","20 г/моль — верно","10 г/моль"],"correctIndex":0,"explanation":"2+16=18."},
+  {"id":"e4","statement":"NaOH — кислота","options":["NaOH — основание","NaOH — кислота, верно","NaOH — соль"],"correctIndex":0,"explanation":"Основание."},
+  {"id":"e5","statement":"Этан C₂H₄","options":["Этан C₂H₆","Этан C₂H₄ верно","Этан CH₄"],"correctIndex":0,"explanation":"Этан C₂H₆."},
+  {"id":"e6","statement":"Mr(CO₂) = 28","options":["Mr(CO₂) = 44","Mr(CO₂) = 28 верно","Mr(CO₂) = 12"],"correctIndex":0,"explanation":"12+32=44."},
+  {"id":"e7","statement":"CO₂ — органическое вещество","options":["CO₂ — неорганическое","CO₂ — органическое, верно","CO₂ — смесь"],"correctIndex":0,"explanation":"Неорганика."},
+  {"id":"e8","statement":"NaCl — ковалентная неполярная связь","options":["Ионная связь","Ковалентная неполярная верно","Металлическая"],"correctIndex":0,"explanation":"Ионная."}
+]

@@ -1,0 +1,14 @@
+[
+  {"id":"b1","equationLeft":"H₂ + O₂","equationRight":"H₂O","leftAtoms":[{"H":2},{"O":2}],"rightAtoms":[{"H":2,"O":1}],"correctCoefficients":[2,1,2],"explanation":"2H₂ + O₂ → 2H₂O."},
+  {"id":"b2","equationLeft":"CH₄ + O₂","equationRight":"CO₂ + H₂O","leftAtoms":[{"C":1,"H":4},{"O":2}],"rightAtoms":[{"C":1,"O":2},{"H":2,"O":1}],"correctCoefficients":[1,2,1,2],"explanation":"CH₄ + 2O₂ → CO₂ + 2H₂O."},
+  {"id":"b3","equationLeft":"Al + O₂","equationRight":"Al₂O₃","leftAtoms":[{"Al":1},{"O":2}],"rightAtoms":[{"Al":2,"O":3}],"correctCoefficients":[4,3,2],"explanation":"4Al + 3O₂ → 2Al₂O₃."},
+  {"id":"b4","equationLeft":"N₂ + H₂","equationRight":"NH₃","leftAtoms":[{"N":2},{"H":2}],"rightAtoms":[{"N":1,"H":3}],"correctCoefficients":[1,3,2],"explanation":"N₂ + 3H₂ → 2NH₃."},
+  {"id":"b5","equationLeft":"Fe + Cl₂","equationRight":"FeCl₃","leftAtoms":[{"Fe":1},{"Cl":2}],"rightAtoms":[{"Fe":1,"Cl":3}],"correctCoefficients":[2,3,2],"explanation":"2Fe + 3Cl₂ → 2FeCl₃."},
+  {"id":"b6","equationLeft":"P + O₂","equationRight":"P₂O₅","leftAtoms":[{"P":1},{"O":2}],"rightAtoms":[{"P":2,"O":5}],"correctCoefficients":[4,5,2],"explanation":"4P + 5O₂ → 2P₂O₅."},
+  {"id":"b7","equationLeft":"Zn + HCl","equationRight":"ZnCl₂ + H₂","leftAtoms":[{"Zn":1},{"H":1,"Cl":1}],"rightAtoms":[{"Zn":1,"Cl":2},{"H":2}],"correctCoefficients":[1,2,1,1],"explanation":"Zn + 2HCl → ZnCl₂ + H₂."},
+  {"id":"b8","equationLeft":"Na + H₂O","equationRight":"NaOH + H₂","leftAtoms":[{"Na":1},{"H":2,"O":1}],"rightAtoms":[{"Na":1,"O":1,"H":1},{"H":2}],"correctCoefficients":[2,2,2,1],"explanation":"2Na + 2H₂O → 2NaOH + H₂."},
+  {"id":"b9","equationLeft":"C + O₂","equationRight":"CO","leftAtoms":[{"C":1},{"O":2}],"rightAtoms":[{"C":1,"O":1}],"correctCoefficients":[2,1,2],"explanation":"2C + O₂ → 2CO."},
+  {"id":"b10","equationLeft":"SO₂ + O₂","equationRight":"SO₃","leftAtoms":[{"S":1,"O":2},{"O":2}],"rightAtoms":[{"S":1,"O":3}],"correctCoefficients":[2,1,2],"explanation":"2SO₂ + O₂ → 2SO₃."},
+  {"id":"b11","equationLeft":"Ca + O₂","equationRight":"CaO","leftAtoms":[{"Ca":1},{"O":2}],"rightAtoms":[{"Ca":1,"O":1}],"correctCoefficients":[2,1,2],"explanation":"2Ca + O₂ → 2CaO."},
+  {"id":"b12","equationLeft":"Fe₂O₃ + C","equationRight":"Fe + CO₂","leftAtoms":[{"Fe":2,"O":3},{"C":1}],"rightAtoms":[{"Fe":1},{"C":1,"O":2}],"correctCoefficients":[2,3,4,3],"explanation":"2Fe₂O₃ + 3C → 4Fe + 3CO₂."}
+]
