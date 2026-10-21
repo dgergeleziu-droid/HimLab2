@@ -1,7 +1,6 @@
 import Foundation
 
 final class ContentLoader: ObservableObject {
-
     static let shared = ContentLoader()
 
     @Published private(set) var articles: [Article] = []
