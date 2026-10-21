@@ -111,3 +111,21 @@ struct AIMessage: Identifiable, Hashable {
     let text: String
     enum Role { case user, assistant, system }
 }
+
+import Foundation
+import SwiftUI
+
+// ... (остальные модели остаются без изменений: Article, QuizQuestion, BalanceTask, FormulaTask, DetectiveTask, FixErrorTask, ChemElement, LabReagent, LabExperiment, AIMessage)
+
+// MARK: - Реакции (Новый раздел)
+
+struct Reaction: Identifiable, Codable, Hashable {
+    let id: String
+    let title: String
+    let equation: String
+    let type: String
+    let conditions: String
+    let observation: String
+    let explanation: String
+    let level: String
+}
