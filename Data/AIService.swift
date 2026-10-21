@@ -19,8 +19,7 @@ final class MockAIService: AIService {
         try await Task.sleep(nanoseconds: 400_000_000)
 
         let q = question.lowercased()
-        let article = articleTitle.flatMap { content.articles.first { $0.title == $0.title && $0.title == $0.title && $0.title == $0.title && $0.title == $0.title && $0.title == $0.title && $0.title == $0.title && $0.title == $0.title && $0.title == $0.title && $0.title == $0.title && $0.title == $0.title } }
-
+        
         let articleCard = articleTitle.flatMap { title in
             content.articles.first { $0.title == title }
         }
