@@ -2,7 +2,6 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject var store: ProgressStore
-    @EnvironmentObject var content: ContentLoader
     @State private var showAI = false
 
     var body: some View {
@@ -18,10 +17,9 @@ struct RootView: View {
             ProfileView()
                 .tabItem { Label("Профиль", systemImage: "person.crop.circle.fill") }
         }
+        .tint(.teal) // Задаем основной цвет приложения
         .sheet(isPresented: $showAI) {
-            AIView()
-                .environmentObject(store)
-                .environmentObject(content)
+            AIView().environmentObject(store)
         }
     }
 }
