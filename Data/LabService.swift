@@ -8,8 +8,12 @@ enum LabOutcome {
 
 final class LabService {
     static let shared = LabService()
-    private let experiments = ContentLoader.shared.labExperiments
-
+    
+    // Всегда берём актуальные данные из ContentLoader
+    private var experiments: [LabExperiment] {
+        ContentLoader.shared.labExperiments
+    }
+    
     func find(a: String, b: String) -> LabOutcome {
         let pair = Set([a, b])
         if let exp = experiments.first(where: { Set([$0.reagentA, $0.reagentB]) == pair }) {
@@ -17,7 +21,7 @@ final class LabService {
         }
         return .unsupported
     }
-
+    
     var allReagents: [LabReagent] {
         let names = experiments.flatMap { [$0.reagentA, $0.reagentB] }
         let uniq = Array(Set(names)).sorted()
@@ -25,7 +29,7 @@ final class LabService {
             LabReagent(id: id, name: Self.name(for: id), symbol: id, colorHex: Self.color(for: id))
         }
     }
-
+    
     static func name(for id: String) -> String {
         let dict = [
             "HCl": "Соляная кислота", "NaOH": "Гидроксид натрия",
@@ -38,7 +42,7 @@ final class LabService {
         ]
         return dict[id] ?? id
     }
-
+    
     static func color(for id: String) -> String {
         switch id {
         case "CuSO4": return "blue"
