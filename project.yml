@@ -1,4 +1,4 @@
-name: HimLab
+name: HimLab2
 options:
   bundleIdPrefix: com.example
   deploymentTarget:
@@ -6,27 +6,32 @@ options:
   createIntermediateGroups: true
 
 targets:
-  HimLab:
+  HimLab2:
     type: application
     platform: iOS
     sources:
-      - path: Sources
+      - path: .               # Искать файлы во всей текущей папке (корне репозитория)
+        excludes:
+          - "project.yml"
+          - ".github"
+          - "*.md"
+          - "Tests"           # Исключаем тесты из основного приложения
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.example.himlab
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.himlab2
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
         SWIFT_VERSION: "5.9"
         MARKETING_VERSION: "1.0"
         CURRENT_PROJECT_VERSION: "1"
 
-  HimLabTests:
+  HimLab2Tests:
     type: bundle.unit-test
     platform: iOS
     sources:
-      - path: Tests
+      - path: Tests           # Если папка с тестами называется иначе, напишите её имя
     dependencies:
-      - target: HimLab
+      - target: HimLab2
     settings:
       base:
         GENERATE_INFOPLIST_FILE: YES
