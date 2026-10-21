@@ -2,6 +2,7 @@ import SwiftUI
 
 struct LabView: View {
     @EnvironmentObject var store: ProgressStore
+    @EnvironmentObject var content: ContentLoader
     @State private var selectedA: String?
     @State private var selectedB: String?
     @State private var result: LabOutcome?
@@ -15,7 +16,8 @@ struct LabView: View {
                     Color(.systemGroupedBackground).ignoresSafeArea()
                     
                     RoundedRectangle(cornerRadius: 20)
-                        .fill(LinearGradient(colors: [.gray.opacity(0.2), .gray.opacity(0.05)], startPoint: .top, endPoint: .bottom))
+                        .fill(LinearGradient(colors: [.gray.opacity(0.2), .gray.opacity(0.05)],
+                                             startPoint: .top, endPoint: .bottom))
                         .frame(height: 200)
                         .padding()
                         .overlay {
@@ -111,12 +113,10 @@ struct BeakerView: View {
     var body: some View {
         VStack {
             ZStack(alignment: .bottom) {
-                // Колба
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.secondary, lineWidth: 3)
                     .frame(width: 80, height: 120)
                 
-                // Жидкость
                 if let id = reagentID {
                     Rectangle()
                         .fill(colorFor(id))
@@ -143,7 +143,8 @@ struct UnsupportedReactionView: View {
         VStack(spacing: 16) {
             Image(systemName: "exclamationmark.triangle.fill").font(.largeTitle).foregroundStyle(.orange)
             Text("Реакция не предусмотрена").font(.headline)
-            Text("В учебной базе нет данных о взаимодействии этих веществ. Попробуйте другие реагенты.").multilineTextAlignment(.center).padding()
+            Text("В учебной базе нет данных о взаимодействии этих веществ. Попробуйте другие реагенты.")
+                .multilineTextAlignment(.center).padding()
             Button("Закрыть") { dismiss() }.buttonStyle(.borderedProminent)
         }
         .padding()
