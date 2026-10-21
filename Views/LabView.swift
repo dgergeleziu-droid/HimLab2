@@ -76,7 +76,9 @@ struct LabView: View {
             ZStack(alignment: .bottom) {
                 RoundedRectangle(cornerRadius: 4).stroke(Color.secondary, lineWidth: 2)
                     .frame(width: 70, height: 100)
-                if let l = label {
+                
+                // ИСПРАВЛЕНО ЗДЕСЬ:
+                if label != nil {
                     Rectangle().fill(Color.accentColor.opacity(0.3))
                         .frame(width: 66, height: 40)
                 }
