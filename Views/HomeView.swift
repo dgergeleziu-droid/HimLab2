@@ -11,9 +11,17 @@ struct HomeView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     header
                     gradePicker
+                    
+                    // Блок статуса сети
+                    networkStatusView
+                    
                     continueButton
                     dailyTask
                     quickLinks
+                    
+                    // Безопасная ссылка на сайт
+                    websiteLink
+                    
                     aiButton
                 }
                 .padding()
@@ -21,6 +29,12 @@ struct HomeView: View {
             .background(Color(.systemGroupedBackground).ignoresSafeArea())
             .navigationTitle("ХимЛаб")
             .navigationBarTitleDisplayMode(.inline)
+            .task {
+                // Автоматическое обновление при первом запуске, если данных нет
+                if content.reactions.isEmpty && !content.isLoading {
+                    await content.refreshFromNetwork()
+                }
+            }
         }
     }
 
@@ -53,6 +67,39 @@ struct HomeView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
+    @ViewBuilder
+    private var networkStatusView: some View {
+        if content.isLoading {
+            HStack {
+                ProgressView()
+                Text("Обновление материалов...")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(10)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.blue.opacity(0.05))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+        } else if let error = content.errorMessage {
+            HStack {
+                Image(systemName: "exclamationmark.triangle.fill")
+                    .foregroundStyle(.orange)
+                Text(error)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Button("Повторить") {
+                    Task { await content.refreshFromNetwork() }
+                }
+                .font(.caption).bold()
+                .buttonStyle(.bordered)
+            }
+            .padding(10)
+            .background(Color.orange.opacity(0.1))
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+    }
+
     private var continueButton: some View {
         NavigationLink {
             LearnView()
@@ -70,31 +117,30 @@ struct HomeView: View {
         }
     }
 
+    @ViewBuilder
     private var dailyTask: some View {
-        Group {
-            if let a = content.todayArticle {
-                NavigationLink {
-                    ArticleView(article: a)
-                } label: {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Label("Задание дня", systemImage: "star.fill")
-                            .font(.caption).bold()
-                            .foregroundStyle(.orange)
-                        Text(a.title).font(.headline).foregroundStyle(.primary)
-                        Text(a.summary).font(.subheadline).lineLimit(2)
-                            .foregroundStyle(.secondary)
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color(.secondarySystemGroupedBackground))
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color.orange.opacity(0.3), lineWidth: 1)
-                    )
+        if let a = content.todayArticle {
+            NavigationLink {
+                ArticleView(article: a)
+            } label: {
+                VStack(alignment: .leading, spacing: 8) {
+                    Label("Задание дня", systemImage: "star.fill")
+                        .font(.caption).bold()
+                        .foregroundStyle(.orange)
+                    Text(a.title).font(.headline).foregroundStyle(.primary)
+                    Text(a.summary).font(.subheadline).lineLimit(2)
+                        .foregroundStyle(.secondary)
                 }
-                .buttonStyle(.plain)
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color(.secondarySystemGroupedBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+                )
             }
+            .buttonStyle(.plain)
         }
     }
 
@@ -112,6 +158,24 @@ struct HomeView: View {
             }
         }
         .buttonStyle(.plain)
+    }
+
+    @ViewBuilder
+    private var websiteLink: some View {
+        // Безопасное создание URL без принудительного unwrap (!)
+        if let url = URL(string: "https://interactive-chemistry-site-b274c4.netlify.app") {
+            Link(destination: url) {
+                HStack {
+                    Image(systemName: "safari.fill")
+                    Text("Открыть ХимЛаб на сайте").bold()
+                }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(Color.blue.opacity(0.1))
+                .foregroundStyle(.blue)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+            }
+        }
     }
 
     private var aiButton: some View {
