@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 // MARK: - Справочник
 
@@ -7,10 +8,10 @@ struct Article: Identifiable, Codable, Hashable {
     let grade: Int
     let title: String
     let keywords: [String]
-    let summary: String          // простое объяснение
-    let formulas: [String]       // формулы/правила
-    let example: String          // разобранный пример
-    let commonMistake: String    // типичная ошибка
+    let summary: String
+    let formulas: [String]
+    let example: String
+    let commonMistake: String
     let interactiveTask: InteractiveTask?
     let checkQuestions: [QuizQuestion]
 }
@@ -36,17 +37,17 @@ struct BalanceTask: Identifiable, Codable, Hashable {
     let id: String
     let equationLeft: String
     let equationRight: String
-    let leftAtoms: [[String: Int]]   // состав каждого вещества слева
+    let leftAtoms: [[String: Int]]
     let rightAtoms: [[String: Int]]
-    let correctCoefficients: [Int]   // для левой и правой частей
+    let correctCoefficients: [Int]
     let explanation: String
 }
 
 struct FormulaTask: Identifiable, Codable, Hashable {
     let id: String
     let targetName: String
-    let availableTokens: [String]   // например ["H", "O", "2"]
-    let correctAnswer: String        // например "H2O"
+    let availableTokens: [String]
+    let correctAnswer: String
     let explanation: String
 }
 
@@ -86,7 +87,7 @@ struct LabReagent: Identifiable, Hashable {
     let id: String
     let name: String
     let symbol: String
-    let color: String  // "clear", "blue", "yellow", "red", "green", "white"
+    let colorHex: String // Для визуализации
 }
 
 struct LabExperiment: Identifiable, Codable, Hashable {
@@ -99,14 +100,7 @@ struct LabExperiment: Identifiable, Codable, Hashable {
     let equation: String?
     let explanation: String
     let question: QuizQuestion
-    let visualType: String // "colorChange", "precipitate", "gas", "dissolve"
-}
-
-// MARK: - Задание (универсальное)
-
-enum TaskResult {
-    case correct(String)      // explanation
-    case incorrect(String)    // hint/explanation
+    let visualType: String
 }
 
 // MARK: - ИИ
